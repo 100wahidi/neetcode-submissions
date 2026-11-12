@@ -1,0 +1,24 @@
+class Solution:
+    def maximumSubarraySum(self, nums: List[int], k: int) -> int:
+        h_map={}
+        maxisio = 0
+        total = 0
+        for i in range(len(nums)):
+            
+            total+=nums[i]
+            h_map[nums[i]]=h_map.get(nums[i], 0)+1
+            # after the first subset start sliding window 
+            if i>=k-1:
+                # if distinct substring
+                if len(h_map)==k:
+                    maxisio=max(maxisio, total)
+                # slide
+                h_map[nums[i-k+1]]-=1
+                # drop the left, if it is the only one drop it else keep it for the next substring 
+                if  h_map[nums[i-k+1]]==0:
+                    h_map.pop(nums[i-k+1])
+                total-=nums[i-k+1] 
+
+        return maxisio
+        
+

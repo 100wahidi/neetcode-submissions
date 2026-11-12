@@ -1,15 +1,17 @@
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        # bruthe force
-        profit = 0
-        buy= prices[0]
-        h = {}
-        for i in range(1,len(prices)):
-            if buy < prices[i]:
-                profit = max(profit, prices[i]-buy)
-            if buy > prices[i]:
-                buy = prices[i]
+        # two pointers
+        MaxP=0
+        l, r=0, 1
+        while(r<len(prices)):
+            if prices[l]<prices[r]:
+                MaxP=max(MaxP, prices[r]-prices[l])
+            else:
+                l=r
+            r+=1
+        return MaxP
 
-        return profit
-                
-            
+
+
+        
+        

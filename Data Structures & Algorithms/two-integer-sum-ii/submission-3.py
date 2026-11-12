@@ -1,12 +1,9 @@
 class Solution:
     def twoSum(self, numbers: List[int], target: int) -> List[int]:
-        mp = {}
-
-        for i in range(len(numbers)):
-            if target - numbers[i] in mp.keys():
-                return [mp[target-numbers[i]]+1,i+1]
-            mp[numbers[i]]=i
-
+        Hash_map={}
+        for i, num in enumerate(numbers):
+            if target-num in Hash_map:
+                return sorted([i+1, Hash_map[target-num]])
+            Hash_map[num]=i+1
         return []
-            
         
